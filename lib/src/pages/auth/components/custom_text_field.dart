@@ -7,7 +7,7 @@ class CustomTextField extends StatefulWidget {
   final bool isSecret;
   final List<TextInputFormatter>? inputFormatters;
 
-  CustomTextField(
+  const CustomTextField(
       {required this.icon,
       required this.label,
       this.isSecret = false,

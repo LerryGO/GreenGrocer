@@ -1,9 +1,12 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:green_grocer/src/auth/components/custom_text_field.dart';
-import 'package:green_grocer/src/auth/sign_up_screen.dart';
-import 'package:green_grocer/src/base/base_screen.dart';
+
 import 'package:green_grocer/src/config/custom_colors.dart';
+import 'package:green_grocer/src/pages/auth/components/custom_text_field.dart';
+import 'package:green_grocer/src/pages/auth/sign_up_screen.dart';
+
+
+import '../base/base_screen.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -79,13 +82,13 @@ class SignInScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     // Email
-                    CustomTextField(
+                    const CustomTextField(
                       icon: Icons.email,
                       label: "Email",
                     ),
 
                     // Senha
-                    CustomTextField(
+                    const CustomTextField(
                       icon: Icons.lock,
                       label: "Senha",
                       isSecret: true,
@@ -101,7 +104,7 @@ class SignInScreen extends StatelessWidget {
                             onPressed: () {
                               Navigator.of(context)
                                   .pushReplacement(MaterialPageRoute(
-                                builder: (context) => BaseScreen(),
+                                builder: (context) => const BaseScreen(),
                               ));
                             },
                             child: const Text(

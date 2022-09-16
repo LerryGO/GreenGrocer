@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:green_grocer/src/pages/home/home_tab.dart';
 
 class BaseScreen extends StatefulWidget {
-  BaseScreen({Key? key}) : super(key: key);
+  const BaseScreen({Key? key}) : super(key: key);
 
   @override
   State<BaseScreen> createState() => _BaseScreenState();
@@ -16,11 +17,9 @@ class _BaseScreenState extends State<BaseScreen> {
     return Scaffold(
       body: PageView(
         controller: pageController,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         children: [
-          Container(
-            color: Colors.red,
-          ),
+          const HomeTab(),
           Container(
             color: Colors.blue,
           ),
