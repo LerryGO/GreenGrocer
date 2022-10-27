@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:green_grocer/src/models/cart_item_model.dart';
 import 'package:green_grocer/src/models/order_model.dart';
+import 'package:green_grocer/src/pages/common_widgets/payment_dialog.dart';
 import 'package:green_grocer/src/pages/orders/components/order_status_widget.dart';
 import 'package:green_grocer/src/services/utils_services.dart';
 
@@ -107,7 +108,16 @@ class OrderTile extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (_) {
+                        return PaymentDialog(
+                          order: order,
+                        );
+                      },
+                    );
+                  },
                   icon: Image.asset(
                     'assets/app_images/pix.png',
                     height: 18,
