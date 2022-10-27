@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.lap.green_grocer">
    <application
-        android:label="green_grocer"
+        android:label="Green Grocer"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
