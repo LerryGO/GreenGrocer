@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:green_grocer/src/config/custom_colors.dart';
-import 'package:green_grocer/src/pages/auth/sign_in_screen.dart';
-import 'package:green_grocer/src/pages/auth/sign_up_screen.dart';
 import 'package:green_grocer/src/pages/common_widgets/app_name_widget.dart';
+import 'package:green_grocer/src/pages_route/app_pages.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({
@@ -17,8 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 2), () {
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const SignInScreen()));
+      Get.offNamed(PagesRoutes.signInRoute);
     });
     super.initState();
   }
