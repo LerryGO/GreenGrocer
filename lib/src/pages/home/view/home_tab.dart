@@ -8,7 +8,6 @@ import 'package:green_grocer/src/pages/common_widgets/custom_shimmer.dart';
 import 'package:green_grocer/src/pages/home/controller/home_controller.dart';
 import 'package:green_grocer/src/services/utils_services.dart';
 
-import '../../../config/app_data.dart' as appdata;
 import '../../common_widgets/app_name_widget.dart';
 import 'components/category_tile.dart';
 import 'components/item_tile.dart';
@@ -109,7 +108,7 @@ class _HomeTabState extends State<HomeTab> {
                 return Container(
                   padding: const EdgeInsets.only(left: 25),
                   height: 40,
-                  child: !controller.isLoading
+                  child: !controller.isCategoryLoading
                       ? ListView.separated(
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) => CategoryTile(
@@ -148,7 +147,7 @@ class _HomeTabState extends State<HomeTab> {
             GetBuilder<HomeController>(
               builder: (controller) {
                 return Expanded(
-                  child: !controller.isLoading
+                  child: !controller.isProductLoading
                       ? GridView.builder(
                           padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                           physics: const BouncingScrollPhysics(),
@@ -158,10 +157,10 @@ class _HomeTabState extends State<HomeTab> {
                                   mainAxisSpacing: 10,
                                   crossAxisSpacing: 10,
                                   childAspectRatio: 9 / 11.5),
-                          itemCount: appdata.items.length,
+                          itemCount: controller.allProducts.length,
                           itemBuilder: (_, index) {
                             return ItemTile(
-                                item: appdata.items[index],
+                                item: controller.allProducts[index],
                                 cartAnimationMethod: itemSelectedCartAnimation);
                           },
                         )

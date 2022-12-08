@@ -5,7 +5,7 @@ import 'package:green_grocer/src/pages/common_widgets/quantity_widgets.dart';
 import 'package:green_grocer/src/services/utils_services.dart';
 
 class ProductScreen extends StatefulWidget {
-  ProductScreen({Key? key, required this.item}) : super(key: key);
+  const ProductScreen({Key? key, required this.item}) : super(key: key);
 
   final ItemModel item;
 
@@ -29,8 +29,8 @@ class _ProductScreenState extends State<ProductScreen> {
             children: [
               Expanded(
                   child: Hero(
-                      tag: widget.item.imgUrl!,
-                      child: Image.asset(widget.item.imgUrl!))),
+                      tag: widget.item.imgUrl,
+                      child: Image.asset(widget.item.imgUrl))),
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.all(32),
@@ -53,7 +53,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         children: [
                           Expanded(
                             child: Text(
-                              widget.item.itemName!,
+                              widget.item.itemName,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
@@ -61,7 +61,7 @@ class _ProductScreenState extends State<ProductScreen> {
                             ),
                           ),
                           QuantityWidget(
-                            suffixText: widget.item.unit!,
+                            suffixText: widget.item.unit,
                             value: cartItemQuantity,
                             result: (quantity) {
                               setState(() {
