@@ -16,7 +16,7 @@ class UtilsServices {
   Future<String?> getLocalData({required String key}) async {
     return await storage.read(key: key);
   }
-
+ 
   // Remove dado salvo localmente
   Future<void> removeLocalData({required String key}) async {
     await storage.delete(key: key);

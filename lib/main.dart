@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'GreenGrocer',
       theme: ThemeData(
+         
           primarySwatch: Colors.green,
           scaffoldBackgroundColor: Colors.white.withAlpha(190)),
       debugShowCheckedModeBanner: false,
