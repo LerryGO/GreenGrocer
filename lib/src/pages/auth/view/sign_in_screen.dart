@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:green_grocer/src/config/custom_colors.dart';
+import 'package:green_grocer/src/pages/auth/view/components/forgot_password_dialog.dart';
 import 'package:green_grocer/src/pages/common_widgets/app_name_widget.dart';
 import 'package:green_grocer/src/pages/common_widgets/custom_text_field.dart';
 import 'package:green_grocer/src/pages_route/app_pages.dart';
+import 'package:green_grocer/src/services/utils_services.dart';
 import 'package:green_grocer/src/services/validators.dart';
 
 import '../controller/auth_controller.dart';
@@ -18,6 +20,8 @@ class SignInScreen extends StatelessWidget {
   // Controlador de campos
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  final utilServices = UtilsServices();
 
   @override
   Widget build(BuildContext context) {
@@ -96,46 +100,59 @@ class SignInScreen extends StatelessWidget {
 
                       // Entrar
                       SizedBox(
-                          height: 50,
-                          child: GetX<AuthController>(
-                            builder: (authController) {
-                              return ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(18))),
-                                  onPressed: authController.isLoading.value
-                                      ? null
-                                      : () {
-                                          FocusScope.of(context).unfocus();
-                                          if (_formKey.currentState!
-                                              .validate()) {
-                                            String email = emailController.text;
-                                            String password =
-                                                passwordController.text;
+                        height: 50,
+                        child: GetX<AuthController>(
+                          builder: (authController) {
+                            return ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18))),
+                              onPressed: authController.isLoading.value
+                                  ? null
+                                  : () {
+                                      FocusScope.of(context).unfocus();
+                                      if (_formKey.currentState!.validate()) {
+                                        String email = emailController.text;
+                                        String password =
+                                            passwordController.text;
 
-                                            authController.signIn(
-                                                email: email,
-                                                password: password);
-                                          } else {}
-                                          //Get.offNamed(PagesRoutes.baseRoute);
-                                        },
-                                  child: authController.isLoading.value
-                                      ? const CircularProgressIndicator()
-                                      : const Text(
-                                          "Entrar",
-                                          style: TextStyle(
-                                            fontSize: 18,
-                                          ),
-                                        ));
-                            },
-                          )),
+                                        authController.signIn(
+                                            email: email, password: password);
+                                      } else {}
+                                      //Get.offNamed(PagesRoutes.baseRoute);
+                                    },
+                              child: authController.isLoading.value
+                                  ? const CircularProgressIndicator()
+                                  : const Text(
+                                      "Entrar",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                            );
+                          },
+                        ),
+                      ),
 
                       // Esqueceu a senha
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              final bool? result = await showDialog(
+                                context: context,
+                                builder: (_) {
+                                  return ForgotPasswordDialog(
+                                      email: emailController.text);
+                                },
+                              );
+
+                              if (result ?? false) {
+                                utilServices.showToast(
+                                    message:
+                                        'Um link de recuperação foi enviado para seu email.');
+                              }
+                            },
                             child: Text(
                               "Esqueceu sua senha?",
                               style: TextStyle(

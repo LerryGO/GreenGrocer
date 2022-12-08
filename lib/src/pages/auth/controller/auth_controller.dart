@@ -38,6 +38,10 @@ class AuthController extends GetxController {
     });
   }
 
+  Future<void> resetPassword(String email) async {
+    await authRepository.resetPassword(email);
+  }
+
   Future<void> signOut() async {
     // Zerar o user
     user = UserModel();
@@ -63,15 +67,13 @@ class AuthController extends GetxController {
 
     isLoading.value = false;
 
-    result.when(
-        success: (user) {
-          this.user = user;
+    result.when(success: (user) {
+      this.user = user;
 
-          saveTokenAndProceedToBase();
-        },
-        error: (message) {
-          utilServices.showToast(message: message, isError: true);
-        });
+      saveTokenAndProceedToBase();
+    }, error: (message) {
+      utilServices.showToast(message: message, isError: true);
+    });
   }
 
   Future<void> signIn({
