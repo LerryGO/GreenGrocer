@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:green_grocer/src/pages/auth/view/sign_in_screen.dart';
 import 'package:green_grocer/src/pages/auth/view/sign_up_screen.dart';
 import 'package:green_grocer/src/pages/base/base_screen.dart';
+import 'package:green_grocer/src/pages/home/binding/home_binding.dart';
 import 'package:green_grocer/src/pages/splash/splash_screen.dart';
 
 abstract class AppPages {
@@ -12,7 +13,7 @@ abstract class AppPages {
     ),
     GetPage(
       name: PagesRoutes.signInRoute,
-      page: () =>  SignInScreen(),
+      page: () => SignInScreen(),
     ),
     GetPage(
       name: PagesRoutes.signUpRoute,
@@ -21,6 +22,9 @@ abstract class AppPages {
     GetPage(
       name: PagesRoutes.baseRoute,
       page: () => const BaseScreen(),
+      bindings: [
+        HomeBinding(),
+      ],
     ),
   ];
 }
