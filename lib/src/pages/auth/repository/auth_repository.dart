@@ -1,9 +1,13 @@
 import 'package:green_grocer/src/constants/endpoints.dart';
+import 'package:green_grocer/src/models/user_model.dart';
+import 'package:green_grocer/src/pages/auth/repository/auth_errors.dart' as authErrors;
+import 'package:green_grocer/src/pages/auth/result/auth_result.dart';
 import 'package:green_grocer/src/services/http_manager.dart';
 
 class AuthRepository {
   final HttpManager _httpManager = HttpManager();
-  Future signin({required String email, required String password}) async {
+  Future<AuthResult> signin(
+      {required String email, required String password}) async {
     final result = await _httpManager.restRequest(
       url: Endpoints.signin,
       method: HttpMethods.post,
@@ -14,11 +18,10 @@ class AuthRepository {
     );
 
     if (result["result"] != null) {
-      print(result);
-      print('Signin funcionou!');
+      final user = UserModel.fromJson(result['result']);
+      return AuthResult.success(user);
     } else {
-      print(result);
-      print('Signin não funcionou!');
+      return AuthResult.error(authErrors.authErrorsString(result['error']));
     }
   }
 }
