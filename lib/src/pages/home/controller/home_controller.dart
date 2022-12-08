@@ -36,9 +36,11 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
 
-    debounce(searchTitle, (_) {
-      update();
-    }, time: const Duration(milliseconds: 600));
+    debounce(
+      searchTitle,
+      (_) => filterByTitle(),
+      time: const Duration(milliseconds: 600),
+    );
     getAllCategories();
   }
 
@@ -110,17 +112,32 @@ class HomeController extends GetxController {
     if (canLoad) {
       setLoading(true, isProduct: true);
     }
+
     Map<String, dynamic> body = {
       'page': currentCategory!.pagination,
       'categoryId': currentCategory!.id,
       'itemsPerPage': itemsPerPage
     };
+
+    if (searchTitle.value.isNotEmpty) {
+      body['title'] = searchTitle.value;
+
+      if (currentCategory!.id == '') {
+        body.remove('categoryId');
+      }
+    }
+
     HomeResult<ItemModel> result = await homeRepository.getAllProducts(body);
+
     setLoading(false, isProduct: true);
-    result.when(success: (data) {
-      currentCategory!.items.addAll(data);
-    }, error: (message) {
-      utilsServices.showToast(message: message, isError: true);
-    });
+
+    result.when(
+      success: (data) {
+        currentCategory!.items.addAll(data);
+      },
+      error: (message) {
+        utilsServices.showToast(message: message, isError: true);
+      },
+    );
   }
 }
