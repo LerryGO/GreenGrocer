@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:green_grocer/src/config/custom_colors.dart';
 import 'package:green_grocer/src/models/item_model.dart';
+import 'package:green_grocer/src/pages/base/controller/navigation_controller.dart';
 import 'package:green_grocer/src/pages/common_widgets/quantity_widgets.dart';
 import 'package:green_grocer/src/services/utils_services.dart';
 
@@ -18,6 +20,8 @@ class _ProductScreenState extends State<ProductScreen> {
 
   int cartItemQuantity = 1;
 
+  final navigationController = Get.find<NavigationController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +34,7 @@ class _ProductScreenState extends State<ProductScreen> {
               Expanded(
                   child: Hero(
                       tag: widget.item.imgUrl,
-                      child: Image.asset(widget.item.imgUrl))),
+                      child: Image.network(widget.item.imgUrl))),
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.all(32),
@@ -92,6 +96,8 @@ class _ProductScreenState extends State<ProductScreen> {
                           ),
                         ),
                       ),
+
+                      // Botão
                       SizedBox(
                         height: 55,
                         child: ElevatedButton.icon(
@@ -100,7 +106,11 @@ class _ProductScreenState extends State<ProductScreen> {
                               borderRadius: BorderRadius.circular(15),
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.back();
+                            navigationController
+                                .navigatePageView(NavigationTabs.cart);
+                          },
                           icon: const Icon(
                             Icons.shopping_cart_outlined,
                             color: Colors.white,
