@@ -1,16 +1,20 @@
-# green_grocer
+![Quitanda virtual](https://github.com/LerryGO/GreenGrocer/assets/56898536/973c23c1-e2ff-4cb6-b8fe-a5859b880dc3)
 
-A new Flutter project.
+# Quitanda virtual com Flutter
 
-## Getting Started
+![quitanda virtual](https://github.com/LerryGO/GreenGrocer/assets/56898536/2728d50c-eeda-4929-9dd2-d718f18a067a)
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+App completo de loja virtual, incluindo pagamentos por Pix. Use todo o potencial do GetX!
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Ações:
+ - Logar e criar conta de usuário
+ - Listar produtos da quitanda com preço
+ - adicionar ao carrinho produtos
+ - Fazer acompanhamento de compra
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Baseado no curso de Flutter
+
+Curso feito por João Pedro Souza
+Disponível na Udemy
